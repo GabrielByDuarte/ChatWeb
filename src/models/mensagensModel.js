@@ -1,3 +1,4 @@
+const moment = require('moment-timezone');
 async function conectarMensagens() {
     banco = require("./db");
     db1 = await banco.conexao();
@@ -12,7 +13,9 @@ async function conectarUsuario() {
 exports.setaMensagens = async (sala, nick, token, mensagem) => {
     db = await conectarMensagens();
     try {
-        const dataAtual = await new Date();
+        // const dataAtual = await new Date();
+        moment.tz.setDefault('America/Sao_Paulo');
+        const dataAtual = moment().toDate();
 
         const ano = await dataAtual.getFullYear().toString();
         const mes = await (dataAtual.getMonth() + 1).toString().padStart(2, '0');
@@ -20,7 +23,7 @@ exports.setaMensagens = async (sala, nick, token, mensagem) => {
         const hora = await dataAtual.getHours().toString().padStart(2, '0');
         const minuto = await dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = await ano + mes + dia + hora + minuto;
-        timeout = timeout - 300;
+
         console.log(timeout);
         // const ano = variavelSemPontuacao.slice(0, 4);
         // const mes = variavelSemPontuacao.slice(4, 6);
@@ -75,7 +78,10 @@ exports.excluir = async (token) => {
 async function limparMensagensExtra(db, sala) {
     db = await conectarMensagens();
     try {
-        const dataAtual = new Date();
+        // const dataAtual = new Date();
+        moment.tz.setDefault('America/Sao_Paulo');
+        const dataAtual = moment().toDate();
+
 
         const ano = dataAtual.getFullYear().toString();
         const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
@@ -84,7 +90,7 @@ async function limparMensagensExtra(db, sala) {
         const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = ano + mes + dia + hora + minuto;
         // console.log(hora);
-        timeoutDelete = timeout - 400;
+        timeoutDelete = timeout - 100;
         const timeString = timeoutDelete.toString();
         // console.log(timeoutDelete + " aqui time para deletar!");
         // console.log(sala + " aqui sala!");
