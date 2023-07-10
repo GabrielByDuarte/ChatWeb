@@ -1,0 +1,566 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0 10px;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+.new-sala {
+    display: flex;
+    gap: 5px;
+}
+
+
+.user-info>p>span:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.user-info>p>span:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.sala:hover {
+    background: #ffffff4d;
+}
+
+.sala {
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+}
+
+.sala span:nth-child(1) {
+    color: silver;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sala span:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+
+}
+
+.separador {
+    background: white;
+    width: 1px;
+    height: 30px;
+}
+
+.nome-usuario-span {
+    color: silver;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.container-mensagens h2 {
+    color: white;
+}
+
+#user-info>p {
+    display: flex;
+    flex-direction: column;
+}
+
+.nome-usuario {
+    color: white;
+    font-weight: bold;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 400px;
+    width: 94%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 400px;
+    width: 94%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.login-box form .button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    filter: drop-shadow(2px 4px 6px #03e9f4);
+    border: none;
+    background: #ff090900;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.fa-user {
+    pointer-events: none;
+
+}
+
+i:hover {
+    filter: drop-shadow(2px 4px 6px #03e9f4);
+    background: #03e9f4;
+    color: rgb(3 8 25);
+    border: none;
+
+}
+
+.login-box .button:hover,
+.container-mensagens form .button :hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #03e9f4;
+}
+
+.login-box a span,
+.container-mensagens form a span {
+    position: absolute;
+    display: block;
+}
+
+.login-box a span:nth-child(1),
+.container-mensagens form a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.login-box a span:nth-child(2),
+.container-mensagens form a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.login-box a span:nth-child(3),
+.container-mensagens form a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.login-box a span:nth-child(4),
+.container-mensagens form a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container-chat {
+    display: flex;
+    background: rgb(3 8 25);
+    filter: drop-shadow(2px 2px 5px black);
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+}
+
+.container-mensagens form input {
+    width: 100%;
+}
+
+.container-mensagens form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+}
+
+.container-mensagens {
+    margin-top: 10px;
+}
+
+.container-mensagens form {
+    width: 100%;
+}
+
+.container-mensagens form .button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    filter: drop-shadow(2px 4px 6px #03e9f4);
+    border: none;
+    background: #ff090900;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+/* .container-mensagens form input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+} */
+
+.container-mensagens {
+    display: flex;
+    background: rgb(3 8 25);
+    filter: drop-shadow(2px 2px 5px black);
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#title-mensagens {
+    color: white;
+}
+
+.sala:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.sala:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.container-chat2 {
+    margin: 10px auto;
+    background: rgb(3 8 25);
+    filter: drop-shadow(2px 2px 5px black);
+    border-radius: 10px;
+}
+
+.container {
+    padding: 5px 0;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+section {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.user-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 0px;
+    margin: 0;
+}
+
+.name-sala {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info>i {
+    background: white;
+    border: solid 1px;
+    padding: 7px;
+    border-radius: 100%;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    pointer-events: none;
+}
+
+.new-sala>i,
+.fa-trash,
+.fa-right-to-bracket,
+.fa-right-from-bracket {
+    /* background: white; */
+    background: transparent;
+    color: #03e9f4;
+    border: solid 1px;
+    padding: 7px;
+    border-radius: 100%;
+    display: flex !important;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#mensagens .button {
+    margin: 10px 0;
+    border-radius: 10px;
+    border: solid #03e9f4 2px;
+    font-weight: bold;
+}
+
+.sala>div:nth-child(2) {
+    display: flex;
+    gap: 10px;
+}
+
+#input-mensagem {
+    padding: 10px 5px;
+}
+
+.tela-mensagens {
+    justify-content: flex-end;
+    padding: 10px;
+    width: 100%;
+    background: rgb(255 255 255 / 78%);
+    border-radius: 10px 10px 0 0;
+    margin-top: 5px;
+    height: 55vh;
+    overflow-y: scroll;
+    /* display: flex; */
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tela-mensagens>div>span:nth-child(1) {
+    display: none;
+
+}
+
+.tela-mensagens>div>span:nth-child(2) {
+    font-size: 14px;
+}
+
+.tela-mensagens>div>span:nth-child(3) {
+    background: #ffffff87;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.tela-mensagens>div>span:nth-child(4) {
+    font-size: 12px;
+    color: #4f4e4e;
+}
+
+.tela-mensagens>div {
+    gap: 3px;
+    color: white;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.ListaSalas>ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ListaSalas>ul>li {
+    flex-direction: row;
+    display: flex;
+    background: rgb(3 8 25);
+    filter: drop-shadow(2px 2px 5px black);
+    border-radius: 10px;
+    align-items: flex-start;
+    padding: 5px 10px;
+    justify-content: space-between;
+    color: white;
+}
+
+.ListaSalas>ul>li span:nth-of-type(1) {
+    color: silver;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.ListaSalas>ul>li span:nth-of-type(2) {
+    color: white;
+    font-weight: bold;
+}
+
+.ListaSalas>ul>li span:nth-of-type(3) {
+    display: none;
+}
+
+.ListaSalas>ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+/* .ListaSalas>ul>li i {
+    background: white;
+    color: black;
+    border: solid 1px;
+    padding: 7px;
+    border-radius: 100%;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+} */
+
+.ListaSalas>ul>li div:nth-child(2) {
+    display: flex;
+    gap: 5px;
+}
+
+.ListaSalas>ul>li div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    align-items: flex-end !important;
+}

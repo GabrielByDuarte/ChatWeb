@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="https://gabrielbyduarte.github.io/ChatWeb/views/css/style.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/40cc08f0c1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatWeb</title>
+    <script>
+        alerta = "<%= alerta %>";
+
+        if (alerta) {
+            alert(alerta);
+        }
+    </script>
+</head>
+
+<body>
+    <section id="salas">
+        <div class="container">
+
+            <div class="container-chat">
+                <div class="user-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="separador"></span>
+                    <div id="user-info">
+                        <p><span class='nome-usuario-span'>User</span><span class="nome-usuario">
+                                <%= nick %>
+                            </span></p>
+                    </div>
+                </div>
+                <div class="new-sala">
+                    <i class="fa-solid fa-plus cursor-pointer" onclick="criarSala()"></i>
+                    <i class="fa-solid fa-right-from-bracket cursor-pointer" onclick=sair()></i>
+                </div>
+            </div>
+
+            <div class="ListaSalas">
+
+                <ul>
+
+                    <% salas.forEach((sala)=> { %>
+                        <li>
+                            <div>
+                                <span>
+                                    <%= sala.tipo %>
+
+                                </span> <span>
+                                    <%= sala.nome %>
+                                </span> <span>
+                                    <%= sala._id %>
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class='fa-solid fa-right-to-bracket cursor-pointer'
+                                    onclick='entrarSala("<%=  sala.nome %>")'></i>
+                                <i class='fa-solid fa-trash cursor-pointer'
+                                    onclick='excluirSala("<%= sala.nome %>")'></i>
+                            </div>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+            <script>
+                const tokenTeste = "<%= token %>";
+                const nickTeste = "<%= nick %>";
+
+                if (tokenTeste) {
+                    if (nickTeste) {
+                        localStorage.setItem('Token', tokenTeste);
+                        localStorage.setItem('Nick', nickTeste);
+                    }
+                }
+
+                function sair() {
+                    // urlParams = new URLSearchParams(window.location.search);
+                    // tokenStorage = ;
+                    // console.log(tokenStorage);
+                    window.location.href = window.location.protocol + "//" + window.location.host + "/sair/?token=" +
+                        localStorage.getItem('Token');
+                    // window.location.href = window.location.protocol + "//" + window.location.host + "/sair/?id=" + id +
+                    // "&nick=" + nick + "&token=" + token;
+                }
+                function criarSala() {
+                    var sala = prompt("Digite o nome da nova sala:", "Sala Teste");
+                    if (sala == null || sala == "") {
+                        alert("Operação cancelada!");
+                    } else {
+                        // urlParams = new URLSearchParams(window.location.search);
+                        // id = urlParams.get('id');
+                        // nick = urlParams.get('nick');+
+                        // token = urlParams.get('token');
+                        window.location.href = window.location.protocol + "//" + window.location.host + "/salas/criar/?nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token') + "&sala=" + sala;
+                    }
+                }
+                function excluirSala(sala) {
+                    window.location.href = window.location.protocol + "//" + window.location.host + "/salas/excluir/?sala=" +
+                        sala + "&nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token');
+                }
+                function entrarSala(sala, storageNick = localStorage.getItem('Nick'), storageToken = localStorage.getItem('Token')) {
+                    // urlParams = new URLSearchParams(window.location.search);
+                    // sala = urlParams.get('sala');
+                    // token = urlParams.get('token');
+
+                    const dataAtual = new Date();
+
+                    const ano = dataAtual.getFullYear().toString();
+                    const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+                    const dia = dataAtual.getDate().toString().padStart(2, '0');
+                    const hora = dataAtual.getHours().toString().padStart(2, '0');
+                    const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
+                    timeout = ano + mes + dia + hora + minuto;
+                    localStorage.setItem("time", timeout);
+
+                    window.location.href = window.location.protocol + "//" + window.location.host + "/salas/entrar/?sala=" +
+                        sala + "&nick=" + storageNick + "&token=" + storageToken + "&time=" + timeout;
+                }
+
+
+
+            </script>
+        </div>
+    </section>
+    <!--   <script src="https://gabrielbyduarte.github.io/ChatWeb/views/js/script.js"></script> -->
+    <!-- // // function imprimirSala() {
+            // // salaController = require("./controllers/salaController");
+            // // limparSalas();
+            // // salas_array = salaController.pegarSalas();
+            // // // res.setHeader('nomeSala' + i, salas[i].nome);
+            // // // res.setHeader('tipoSala' + i, salas[i].tipo);
+            // // // res.setHeader('idSala' + i, salas[i]._id);
+            // // for (var i = 0; i < salas_array.length; i++) { // var salas=document.getElementById("mostrar-salas");
+                // // // var option=document.createElement("option"); // // option.text=sala; // // newsala.add(option,
+                newsala[0]); // // // console.log(salas_array[i]); // // //
+                salas.innerHTML="<div class='sala'>Sala</span><span class='nome-sala'>" + salas_array[i] + "</span>" ;
+                // // div=document.createElement('div'); // div.id=i; // div.className="sala cursor-pointer" ; // //
+                div.innerHTML="<div><span>Sala</span> <span>" + salas_array[i].nome //
+                + "</span></div><div><i class='fa-solid fa-right-to-bracket' onclick=" + '"' + "entrarSala(" + "'" + //
+                salas_array[i].nome + "'" + ")" + '"' + "></i><i class='fa-solid fa-trash' onclick=" + '"' //
+                + "excluirSala(" + "'" + salas_array[i].nome + "'" + ")" + '"' + "></i> </div>" ; // //
+                salas.appendChild(div); // } // } // function nameUser() { // limparNick(); // // //
+                nick=localStorage.getItem('nick'); // const urlParams=new URLSearchParams(window.location.search); // //
+                const nick=urlParams.get('nick'); // usuarioText=document.createElement("p"); // //
+                usuarioText.innerHTML="<span class='nome-usuario-span'>User</span><span class='nome-usuario2'>" + nick
+                // + "</span>" ; // divPai=document.getElementById('user-info'); // divPai.appendChild(usuarioText); //
+                } // // function limparNick() { // div=document.querySelector("#user-info"); // while (div.firstChild) {
+                // // div.removeChild(div.firstChild); // } // } // function limparSalas() { // //
+                div=document.getElementById("mostrar-salas"); // while (div.firstChild) { // return //
+                div.removeChild(div.firstChild); // } // } // nameUser(); // imprimirSala(); // <div
+                class="container-chat2">
+
+                // <div class="salas" id="mostrar-salas">
+
+                    // </div>
+
+                // -->
+
+
+</body>
+
+</html>

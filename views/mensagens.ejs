@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="https://gabrielbyduarte.github.io/ChatWeb/views/css/style.css?cache=1">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/40cc08f0c1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatWeb</title>
+
+</head>
+
+<body>
+    <section id="mensagens">
+
+        <div class="container-mensagens">
+            <h2>
+                <%= sala %>
+            </h2>
+            <div class="name-sala">
+                <i class="fa-solid fa-right-from-bracket cursor-pointer" onclick="sairMensagens();"></i>
+                <div id="title-mensagens"></div>
+            </div>
+            <div class="tela-mensagens" id="tela-mensagens">
+                <% mensagens.forEach((menssager)=> { %>
+                    <div class="<%= menssager.nick %>">
+                        <span>
+                            <%= menssager.token %>
+                        </span>
+                        <span>
+                            <%= menssager.nick %>
+                        </span>
+                        <span>
+                            <%= menssager.mensagem %>
+                        </span>
+                        <span class="timer"> </span>
+                        <script>
+                            function setartHora() {
+                                const time = "<%= menssager.timeout %>";
+                                const ano = time.slice(0, 4);
+                                const mes = time.slice(4, 6);
+                                const dia = time.slice(6, 8);
+                                const hora = time.slice(8, 10);
+                                const minuto = time.slice(10, 12);
+                                const variavelComPontuacao = `${dia}/${mes}/${ano} ${hora}:${minuto}`;
+
+                                $('.timer').last().text(variavelComPontuacao);
+
+                                // const elementosTimers = document.querySelectorAll('timer');
+                                // const elementosTimersLength = elementosTimers.length;
+                                // console.log(elementosTimersLength);
+                                // // console.log(localStorage.getItem('Nick'));
+                                // elementosTimers.forEach((elemento,index) => {
+                                //     if (index ===-  elementosTimersLength - 1) {
+                                //         elemento.innerHTML = variavelComPontuacao;
+                                //     }
+                                // });
+                            }
+                            setartHora();
+                        </script>
+
+
+                    </div>
+                    <% }); %>
+
+                        <% corUsuario.forEach((cor)=> { %>
+                            <style>
+                                .<%=cor.nick %>>span:nth-child(2) {
+                                    color: <%=cor.cor %>;
+                                }
+                            </style>
+
+                            <% }); %>
+            </div>
+            <form id="form" action="" method="">
+                <div class="user-box">
+                    <input type="text" id="input-mensagem" name="" required="" placeholder="Escrever mensagem">
+                </div>
+                <input value="ENVIAR" type="submit" class="button cursor-pointer" />
+                <!-- <a onclick="newMenssage()" class="cursor-pointer">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    ENVIAR
+                </a> -->
+            </form>
+        </div>
+    </section>
+
+
+    <script>
+        const sala = "<%= sala %>";
+
+        if (sala) {
+            localStorage.setItem('Sala', sala);
+        }
+        const form = document.getElementById('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            mensagem = document.getElementById("input-mensagem").value;
+            window.location.href = window.location.protocol + "//" + window.location.host + "/mensagens/enviar?mensagem=" + mensagem + "&nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token') + "&sala=" + sala + "&time=" + localStorage.getItem('time');
+            //  Atualiza a propriedade "action" do formulário com o valor do input
+            // form.action = "/entrar" + inputValue;
+
+            // Submete o formulário
+            // form.submit();
+        })
+        function sairMensagens() {
+            window.location.href = window.location.protocol + "//" + window.location.host + "/salas/?token=" +
+                localStorage.getItem('Token') + "&nick=" + localStorage.getItem('Nick');
+        }
+
+
+
+    </script>
+
+    <script>
+        const elementos = document.querySelectorAll('.tela-mensagens>div');
+        // console.log(elementos);
+        console.log(localStorage.getItem('Nick'));
+        elementos.forEach((elemento) => {
+            console.log(elemento);
+            if (elemento.className == localStorage.getItem('Nick')) {
+                elemento.classList.add('right');
+            }
+        });
+
+        var div = document.getElementById('tela-mensagens');
+
+        // Faz a div rolar para o final
+        div.scrollTop = div.scrollHeight;
+    </script>
+
+    <!-- <script src="https://gabrielbyduarte.github.io/ChatWeb/views/js/script.js"></script> -->
+</body>
+
+</html>
