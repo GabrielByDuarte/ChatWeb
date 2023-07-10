@@ -11,6 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatWeb</title>
 
+    <script>
+        function fazerRequisicao() {
+            url = "/mensagens/?nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token') + "&sala=" + localStorage.getItem('Sala') + "&time=" + localStorage.getItem('time');
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    return data;
+                })
+                .catch(error => {
+                    console.log('Erro na requisição:', error);
+                });
+        }
+
+        // Chame a função fazerRequisicao a cada 3 segundos
+        setTimeout(fazerRequisicao, 3000);
+    </script>
 </head>
 
 <body>
@@ -147,6 +163,7 @@
         // Faz a div rolar para o final
         div.scrollTop = div.scrollHeight;
     </script>
+
 
     <!-- <script src="https://gabrielbyduarte.github.io/ChatWeb/views/js/script.js"></script> -->
 </body>
