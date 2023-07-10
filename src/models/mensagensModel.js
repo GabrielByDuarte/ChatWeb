@@ -84,7 +84,7 @@ async function limparMensagensExtra(db, sala) {
         const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = ano + mes + dia + hora + minuto;
         // console.log(hora);
-        timeoutDelete = timeout - 100;
+        timeoutDelete = timeout - 400;
         const timeString = timeoutDelete.toString();
         // console.log(timeoutDelete + " aqui time para deletar!");
         // console.log(sala + " aqui sala!");
