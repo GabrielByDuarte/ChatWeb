@@ -9,9 +9,9 @@ exports.pegarMensagens = async (sala, time) => {
     }
 }
 
-exports.enviarMensagem = async (sala, nick, token, mensagem) => {
+exports.enviarMensagem = async (sala, nick, token, mensagem,timeout) => {
     try {
-        return await mensagensModel.setaMensagens(sala, nick, token, mensagem);
+        return await mensagensModel.setaMensagens(sala, nick, token, mensagem,timeout);
     } catch (error) {
         console.error('Erro ao registrar usuario', error);
     }

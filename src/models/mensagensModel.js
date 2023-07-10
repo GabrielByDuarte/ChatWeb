@@ -10,7 +10,7 @@ async function conectarUsuario() {
     return await db1.collection("usuario");
 }
 
-exports.setaMensagens = async (sala, nick, token, mensagem) => {
+exports.setaMensagens = async (sala, nick, token, mensagem,timeout) => {
     db = await conectarMensagens();
     try {
         // const dataAtual = await new Date();
@@ -22,8 +22,8 @@ exports.setaMensagens = async (sala, nick, token, mensagem) => {
         const dia = await dataAtual.getDate().toString().padStart(2, '0');
         const hora = await dataAtual.getHours().toString().padStart(2, '0');
         const minuto = await dataAtual.getMinutes().toString().padStart(2, '0');
-        timeout = await ano + mes + dia + hora + minuto;
-        timeout - 300;
+        // timeout = await ano + mes + dia + hora + minuto;
+        // timeout - 300;
         console.log(timeout);
         // const ano = variavelSemPontuacao.slice(0, 4);
         // const mes = variavelSemPontuacao.slice(4, 6);

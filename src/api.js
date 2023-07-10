@@ -38,7 +38,7 @@ app.get("/entrar", router.get("/entrar", async (req, res) => {
         if (token == false) {
             alerta = 'Usuario já existe!';
             // setTimeout(function () {
-                return res.status(200).render('usuario.ejs', { alerta });
+            return res.status(200).render('usuario.ejs', { alerta });
             // }, 100);
 
         } else {
@@ -85,7 +85,7 @@ app.use("/salas", router.get("/salas", async (req, res, next) => {
         alerta = null;
         // setTimeout(function () {
 
-            return res.render('salas.ejs', { nick, token, salas, alerta });
+        return res.render('salas.ejs', { nick, token, salas, alerta });
         // }, 100);
         // return res.render('salas.ejs');
 
@@ -104,8 +104,8 @@ app.use("/sair", router.get("/sair", async (req, res, next) => {
     try {
         await usuarioController.excluirUsuario(token);
         // setTimeout(function () {
-            // return res.redirect(302, process.env.API_SERVIDOR);
-            return res.redirect(302, "/");
+        // return res.redirect(302, process.env.API_SERVIDOR);
+        return res.redirect(302, "/");
         // }, 100);
 
     }
@@ -142,8 +142,8 @@ app.use("/salas/criar", router.get("/salas/criar", async (req, res, next) => {
                 } else {
                     alerta = "Sala já existe! Tente novamente...";
                     // setTimeout(function () {
-                        // return res.render('salas.ejs', { alerta, nick, token, salas });
-                        return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
+                    // return res.render('salas.ejs', { alerta, nick, token, salas });
+                    return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
                     // }, 100);
                 }
             }
@@ -152,9 +152,9 @@ app.use("/salas/criar", router.get("/salas/criar", async (req, res, next) => {
         var salas = await salaController.pegarSalas();
         // setTimeout(function () {
 
-            alerta = null;
-            return res.render('salas.ejs', { nick, token, salas, alerta });
-            // return res.redirect(302, 'https://gabrielbyduarte.github.io/ChatWeb/salas/?id=' + id + '&nick=' + nick + "&token=" + token);
+        alerta = null;
+        return res.render('salas.ejs', { nick, token, salas, alerta });
+        // return res.redirect(302, 'https://gabrielbyduarte.github.io/ChatWeb/salas/?id=' + id + '&nick=' + nick + "&token=" + token);
         // }, 100);
     }
     catch (error) {
@@ -172,9 +172,9 @@ app.get("/salas/excluir", router.get("/salas/excluir", async (req, res, next) =>
             await salaController.excluirSala(sala);
             // var salas = await salaController.pegarSalas();
             // setTimeout(function () {
-                // return res.redirect(302, 'https://gabrielbyduarte.github.io/ChatWeb/salas/');
+            // return res.redirect(302, 'https://gabrielbyduarte.github.io/ChatWeb/salas/');
 
-                return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
+            return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
             // }, 100);
         }
 
@@ -193,8 +193,8 @@ app.get("/salas/entrar", router.get("/salas/entrar", async (req, res, next) => {
     try {
         await salaController.entrarSala(sala, token);
         // setTimeout(function () {
-            return res.redirect(302, "/mensagens/?sala=" + sala + "&nick=" + nick + "&token=" + token + "&time=" + time);
-            // return res.render('mensagens.ejs', { nick, token, alerta });
+        return res.redirect(302, "/mensagens/?sala=" + sala + "&nick=" + nick + "&token=" + token + "&time=" + time);
+        // return res.render('mensagens.ejs', { nick, token, alerta });
         // }, 100);
 
     }
@@ -213,7 +213,7 @@ app.use("/mensagens", router.get("/mensagens", async (req, res, next) => {
         mensagens = await mensagensController.pegarMensagens(sala, time);
         corUsuario = await usuarioController.pegarCor();
         // setTimeout(function () {
-            return res.render('mensagens.ejs', { sala, nick, token, corUsuario, mensagens });
+        return res.render('mensagens.ejs', { sala, nick, token, corUsuario, mensagens });
         // }, 100);
     }
     catch (error) {
@@ -226,13 +226,14 @@ app.use("/mensagens/enviar", router.get("/mensagens/enviar", async (req, res, ne
     var nick = await req.query.nick;
     var token = await req.query.token;
     var time = await req.query.time;
+    var timeout = await req.query.timeout;
     var mensagem = await req.query.mensagem;
     try {
 
-        await mensagensController.enviarMensagem(sala, nick, token, mensagem);
+        await mensagensController.enviarMensagem(sala, nick, token, mensagem, timeout);
 
         // setTimeout(function () {
-            return res.redirect(302, "/mensagens/?sala=" + sala + "&nick=" + nick + "&token=" + token + "&time="+ time);
+        return res.redirect(302, "/mensagens/?sala=" + sala + "&nick=" + nick + "&token=" + token + "&time=" + time);
         // }, 100);
     }
     catch (error) {
@@ -249,7 +250,7 @@ app.use("/mensagens/sair", router.get("/sair", async (req, res, next) => {
     try {
         await mensagensController.excluirSala(token);
         // setTimeout(function () {
-            return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
+        return res.redirect(302, '/salas/?nick=' + nick + "&token=" + token);
         // }, 100);
 
     }

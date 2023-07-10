@@ -78,6 +78,18 @@
             <form id="form" action="" method="">
                 <div class="user-box">
                     <input type="text" id="input-mensagem" name="" required="" placeholder="Escrever mensagem">
+                    <input type="hidden" id="dataHora" value="">
+                    <script>
+                        const dataAtual = new Date();
+
+                        const ano = dataAtual.getFullYear().toString();
+                        const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+                        const dia = dataAtual.getDate().toString().padStart(2, '0');
+                        const hora = dataAtual.getHours().toString().padStart(2, '0');
+                        const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
+                        timeout = ano + mes + dia + hora + minuto;
+                        document.getElementById('dataHora').value = timeout;
+                    </script>
                 </div>
                 <input value="ENVIAR" type="submit" class="button cursor-pointer" />
                 <!-- <a onclick="newMenssage()" class="cursor-pointer">
@@ -102,7 +114,8 @@
         form.addEventListener('submit', function (event) {
             event.preventDefault(); // Impede o envio padrão do formulário
             mensagem = document.getElementById("input-mensagem").value;
-            window.location.href = window.location.protocol + "//" + window.location.host + "/mensagens/enviar?mensagem=" + mensagem + "&nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token') + "&sala=" + sala + "&time=" + localStorage.getItem('time');
+            dataHora = document.getElementById("dataHora").value;
+            window.location.href = window.location.protocol + "//" + window.location.host + "/mensagens/enviar?mensagem=" + mensagem + "&nick=" + localStorage.getItem('Nick') + "&token=" + localStorage.getItem('Token') + "&sala=" + sala + "&time=" + localStorage.getItem('time') + "&timeout=" + dataHora;
             //  Atualiza a propriedade "action" do formulário com o valor do input
             // form.action = "/entrar" + inputValue;
 
