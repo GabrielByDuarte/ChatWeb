@@ -12,14 +12,14 @@ async function conectarUsuario() {
 exports.setaMensagens = async (sala, nick, token, mensagem) => {
     db = await conectarMensagens();
     try {
-        const dataAtual = new Date();
+        const dataAtual = await new Date();
 
-        const ano = dataAtual.getFullYear().toString();
-        const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
-        const dia = dataAtual.getDate().toString().padStart(2, '0');
-        const hora = dataAtual.getHours().toString().padStart(2, '0');
-        const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
-        timeout = ano + mes + dia + hora + minuto;
+        const ano = await dataAtual.getFullYear().toString();
+        const mes = await (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+        const dia = await dataAtual.getDate().toString().padStart(2, '0');
+        const hora = await dataAtual.getHours().toString().padStart(2, '0');
+        const minuto = await dataAtual.getMinutes().toString().padStart(2, '0');
+        timeout = await ano + mes + dia + hora + minuto;
         // console.log(timeout);
         // const ano = variavelSemPontuacao.slice(0, 4);
         // const mes = variavelSemPontuacao.slice(4, 6);
@@ -34,7 +34,7 @@ exports.setaMensagens = async (sala, nick, token, mensagem) => {
         //COMO VIZUALIZAR TIMEOUT
         resultadoInsert = await db.insertOne({ "sala": sala, "nick": nick, "token": token, "mensagem": mensagem, "timeout": timeout });
 
-        return resultadoInsert;
+        return await resultadoInsert;
     } catch (error) {
         console.error('Erro', error);
     }
@@ -45,9 +45,9 @@ exports.listarMensagens = async (sala, time) => {
     // console.log(time);
     // console.log(time + " aqui!"); 
 
-    time--;
+    await time--;
     // console.log(typeof time);
-    const timeString = time.toString();
+    const timeString = await time.toString();
 
     console.log(timeString);
 
