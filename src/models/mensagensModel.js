@@ -17,11 +17,11 @@ exports.setaMensagens = async (sala, nick, token, mensagem) => {
         const ano = await dataAtual.getFullYear().toString();
         const mes = await (dataAtual.getMonth() + 1).toString().padStart(2, '0');
         const dia = await dataAtual.getDate().toString().padStart(2, '0');
-        hora = await dataAtual.getHours().toString().padStart(2, '0');
-        hora - 3;
+        const hora = await dataAtual.getHours().toString().padStart(2, '0');
         const minuto = await dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = await ano + mes + dia + hora + minuto;
-        console.log(dataAtual);
+        timeout = timeout - 300;
+        console.log(timeout);
         // const ano = variavelSemPontuacao.slice(0, 4);
         // const mes = variavelSemPontuacao.slice(4, 6);
         // const dia = variavelSemPontuacao.slice(6, 8);
