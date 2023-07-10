@@ -23,7 +23,7 @@ exports.setaMensagens = async (sala, nick, token, mensagem) => {
         const hora = await dataAtual.getHours().toString().padStart(2, '0');
         const minuto = await dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = await ano + mes + dia + hora + minuto;
-
+        timeout - 300;
         console.log(timeout);
         // const ano = variavelSemPontuacao.slice(0, 4);
         // const mes = variavelSemPontuacao.slice(4, 6);
@@ -90,7 +90,7 @@ async function limparMensagensExtra(db, sala) {
         const minuto = dataAtual.getMinutes().toString().padStart(2, '0');
         timeout = ano + mes + dia + hora + minuto;
         // console.log(hora);
-        timeoutDelete = timeout - 100;
+        timeoutDelete = timeout - 400;
         const timeString = timeoutDelete.toString();
         // console.log(timeoutDelete + " aqui time para deletar!");
         // console.log(sala + " aqui sala!");
